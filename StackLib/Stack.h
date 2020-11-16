@@ -24,6 +24,11 @@ public:
   int IsEmpty(void) const; // контроль пустоты
   int IsFull(void) const; //контроль переполнения
 
+  //DOP
+  T Min_elem();
+  T Max_elem();
+  void File();
+
   template <class T1>
   friend ostream& operator<< (ostream& ostr, const TStackList<T1> &A);
   template <class T1>
@@ -92,6 +97,67 @@ template<class T>
 inline int TStackList<T>::IsFull(void) const
 {
   return list.IsFull();
+}
+
+template<class T>
+inline T TStackList<T>::Min_elem()
+{
+  int count = this->GetCount();
+  T temp = NULL;
+  for (int i = 0; i < count; i++)
+  {
+    if (temp == NULL)
+    {
+      temp = this->Get();
+    }
+    else
+    {
+      T temp_for = this->Get();
+      if (temp_for < temp)
+      {
+        temp = temp_for;
+      }
+    }
+  }
+  return temp;
+}
+
+template<class T>
+inline T TStackList<T>::Max_elem()
+{
+  int count = this->GetCount();
+  T temp = NULL;
+  for (int i = 0; i < count; i++)
+  {
+    if (temp == NULL)
+    {
+      temp = this->Get();
+    }
+    else
+    {
+      T temp_for = this->Get();
+      if (temp_for > temp)
+      {
+        temp = temp_for;
+      }
+    }
+  }
+  return temp;
+}
+
+template<class T>
+inline void TStackList<T>::File()
+{
+  ofstream outf("DataStack.txt");
+  if (!outf)
+  {
+    throw "Error file";
+  }
+  int temp = this->GetCount();
+  for (int i = 0; i < temp; i++)
+  {
+    outf << this->Get() << endl;
+  }
 }
 
 template<class T>

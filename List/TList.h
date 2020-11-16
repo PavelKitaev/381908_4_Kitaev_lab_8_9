@@ -135,7 +135,7 @@ TList<T>::TList(TList<T>& _v)
     }
 
     end = j;
-    i = i->GetNext(); //next?
+    i = i->GetNext();
   }
 }
 
@@ -236,6 +236,7 @@ inline void TList<T>::InsLast(T d)
   {
     throw "Error";
   }
+
   if (end == 0)
   {
     end = new TListElem<T>(d);
@@ -243,7 +244,7 @@ inline void TList<T>::InsLast(T d)
   else
   {
     TListElem<T>* temp = new TListElem<T>(d);
-    temp->SetNext(end);
+    end->SetNext(temp);
     end = temp;
   }
   if (root == 0)
@@ -284,7 +285,6 @@ inline bool TList<T>::IsEmpty(void) const
 {
   return count == 0;
 }
-
 
 template<class T>
 inline TListElem<T>* TList<T>::GetFirst()
@@ -331,8 +331,6 @@ inline int TList<T>::GetCount()
 {
   return count;
 }
-
-
 #endif
 
 template<class T>
@@ -341,7 +339,6 @@ inline TListElem<T>::TListElem(T _data)
   data = _data;
   next = 0;
   prev = 0;
-
 }
 
 template<class T>

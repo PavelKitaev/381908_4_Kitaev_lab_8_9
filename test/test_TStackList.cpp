@@ -68,3 +68,36 @@ TEST(TStackList, can_get_count)
 	EXPECT_EQ(2, s.GetCount());
 }
 
+TEST(TStackList, DOP_can_save_in_file_DOP)
+{
+	TStackList<int> s;
+	s.Push(1);
+	s.Push(2);
+	s.Push(3);
+	s.Push(4);
+	ASSERT_NO_THROW(s.File());
+}
+
+TEST(TStackList, DOP_can_get_max_elem_DOP)
+{
+	TStackList<int> s;
+	s.Push(1);
+	s.Push(7);
+	s.Push(3);
+	s.Push(14);
+	s.Push(61);
+	s.Push(2);
+	EXPECT_EQ(61, s.Max_elem());
+}
+
+TEST(TStackList, DOP_can_get_min_elem_DOP)
+{
+	TStackList<int> s;
+	s.Push(1);
+	s.Push(7);
+	s.Push(3);
+	s.Push(14);
+	s.Push(61);
+	s.Push(2);
+	EXPECT_EQ(1, s.Min_elem());
+}
